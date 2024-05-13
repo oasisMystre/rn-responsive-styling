@@ -1,41 +1,32 @@
-import { makeStyles } from "rn-responsive-styling";
-import { Appearance, Button, useColorScheme, View, Text } from "react-native";
+import { View } from "react-native";
+import {makeStyles} from "rn-responsive-styling";
 
-export default function IndexScreen() {
-  const styles = useStyles();
-  return (
-    <View style={styles.container}>
-      <Button
-        title="Set Theme"
-        onPress={() =>
-          Appearance.setColorScheme(
-            Appearance.getColorScheme() === "dark" ? "light" : "dark"
-          )
-        }
-      ></Button>
-      <Text style={styles.text}>{JSON.stringify(styles, undefined, 2)}</Text>
-    </View>
-  );
+export default function IndexScreen(){
+	const styles = useStyles();
+
+	return (
+		<View style={styles.root}>
+			<View style={styles.container} />
+			<View style={styles.pane} />
+		</View>
+	);
 }
 
-const useStyles = makeStyles((theme) => {
-  return {
-    container: {
-      flex: 1,
-      [theme.breakpoints.down("sm")]: {
-        backgroundColor: theme.color.primary,
-        paddingTop: theme.insets.top,
-        paddingHorizontal: 8,
-      },
-      [theme.breakpoints.up("sm")]: {
-        backgroundColor: "indigo",
-      },
-      [theme.breakpoints.eq("sm")]: {
-        backgroundColor: "orange",
-      },
-    },
-    text: {
-      color: theme.color.invert,
-    },
-  };
-});
+const useStyles = makeStyles(theme => ({
+	root: {
+		flex: 1,
+		display: "flex",
+		flexDirection: "column",
+		[theme.breakpoints.up("sm")]: {
+			flexDirection: "row"
+		}
+	},
+	container: {
+		flex: 1,
+		background: theme.color.primary,
+	},
+	pane: {
+		width: 56,
+		background: theme.color.invert,
+	},
+}))
