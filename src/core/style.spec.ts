@@ -1,25 +1,23 @@
-import { makeStyles } from "./style";
+import { makeStyles } from "..";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    position: "absolute",
-    top: 2,
-    left: 3,
-    
-
-    [theme.breakpoints.down("sm")]: {
-      top: 3,
-    
-    },
-    [theme.breakpoints.eq("md")]: {
-      bottom: 3,
-      top: 3,
-      position: "absolute",
-    },
-  },
-}));
+const useStyles = makeStyles(theme => ({
+	root: {
+		flex: 1,
+		display: "flex",
+		flexDirection: "column",
+		[theme.breakpoints.up("sm")]: {
+			flexDirection: "row"
+		}
+	},
+	container: {
+		flex: 1,
+		background: theme.color.primary,
+	},
+	pane: {
+		width: 56,
+		background: theme.color.invert,
+	},
+}))
 
 const styles = useStyles();
-styles.container
-
-console.log(JSON.stringify(useStyles(), undefined, 2));
+styles.root

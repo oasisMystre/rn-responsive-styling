@@ -9,7 +9,7 @@ export default function useDimensions() {
 
   useEffect(() => {
     const unsubsribe = Dimensions.addEventListener("change", (dimensions) =>
-      setDimensions(() => ({ ...dimensions }))
+      setDimensions(() => ({ ...dimensions })),
     );
 
     return () => unsubsribe.remove();

@@ -31,15 +31,15 @@ export interface IBreakPoint {
 export type Theme = {
   insets: EdgeInsets;
   breakpoints: IBreakPoint;
-  colorScheme: Exclude<ColorSchemeName, undefined | null>,
+  colorScheme: Exclude<ColorSchemeName, undefined | null>;
 } & ThemeValue;
 
-export type ExtractStyle<T extends StyleSheet> =
-  | {
-      [P in keyof T]:
-        | {
-            [K in Exclude<keyof T[P], BreakPoint>]: T[P][K];
-          } & {
-            [K in keyof T[P]]: K extends BreakPoint ? T[P][K] : never;
-          }[keyof T[P]];
-    };
+export type ExtractStyle<T extends StyleSheet> = {
+  [P in keyof T]:
+    | {
+        [K in Exclude<keyof T[P], BreakPoint>]: T[P][K];
+      }
+    | {
+        [K in keyof T[P]]: K extends BreakPoint ? T[P][K] : never;
+      }[keyof T[P]];
+};

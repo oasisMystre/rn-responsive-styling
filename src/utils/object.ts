@@ -13,7 +13,7 @@ export const deepCopy = <T extends object>(self: T) => {
 
 export const mergeStyle = <T extends StyleSheet>(
   styles: T,
-  screenBreakpoints: Readonly<BreakPoint[]>
+  screenBreakpoints: Readonly<BreakPoint[]>,
 ) => {
   const extractedStyles: Record<string, Style> = {};
   for (const [key, style] of Object.entries(styles)) {
@@ -32,7 +32,6 @@ export const mergeStyle = <T extends StyleSheet>(
         delete style[property];
       }
     }
-
 
     extractedStyles[key] = {
       ...(style as Style),

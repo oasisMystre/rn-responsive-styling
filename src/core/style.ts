@@ -6,7 +6,7 @@ import { getBreakpoints } from "./breakpoints";
 import { deepCopy, mergeStyle } from "../utils";
 
 export const makeStyles = <T extends StyleSheet>(
-  callbackFn: (theme: Theme) => T
+  callbackFn: (theme: Theme) => T,
 ) => {
   const cache = new Map<string, ExtractStyle<ReturnType<typeof callbackFn>>>();
 
